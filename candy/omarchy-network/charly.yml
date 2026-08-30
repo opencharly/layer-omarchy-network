@@ -1,0 +1,60 @@
+omarchy-network:
+    candy:
+        version: 2026.242.0000
+        description: |
+            Omarchy's networking, bluetooth, printing and firewall stack — MACHINE-ONLY.
+            omarchy-network installs the daemons that own a machine's network, bluetooth,
+            print and firewall state. None of it belongs in a pod: NetworkManager, bluez,
+            cups and avahi each claim host devices or the system D-Bus, and ufw needs
+            NET_ADMIN and the host's netfilter tables. This candy is composed by the
+            machine images only. Verifiable on the built image: the packages are present;
+            no unit is enabled here, because enabling them is the machine image's job.
+        require:
+            - '@github.com/opencharly/layer-omarchy-base/candy/omarchy-base:v2026.242.0701'
+        distro:
+            arch:
+                package:
+                    # Network and service discovery.
+                    - networkmanager
+                    - nss-mdns
+                    - avahi
+                    - wireless-regdb
+                    - bolt
+                    # Bluetooth.
+                    - bluez
+                    - bluez-tools
+                    - bluez-utils
+                    # Printing.
+                    - cups
+                    - cups-browsed
+                    - cups-filters
+                    - cups-pdf
+                    - system-config-printer
+                    # Firewall. ufw-docker is Omarchy-published and reconciles ufw with
+                    # docker's own iptables chains.
+                    - ufw
+                    - ufw-docker
+        plan:
+            - check: the network manager the machine images enable is installed
+              id: omarchy-network-nm
+              context:
+                - build
+              package:
+                package: networkmanager
+
+            - check: the bluetooth stack is installed
+              id: omarchy-network-bluez
+              context:
+                - build
+              package:
+                package: bluez
+
+            - check: the print and firewall stacks are installed
+              id: omarchy-network-cups-ufw
+              context:
+                - build
+              exit_status: 0
+              command: |
+                  set -eu
+                    command -v cupsd >/dev/null || { echo "missing: cupsd" >&2; exit 1; }
+                    command -v ufw >/dev/null || { echo "missing: ufw" >&2; exit 1; }
