@@ -1,0 +1,10 @@
+#  opencharly/layer-omarchy-network
+#
+#  SHAPE: one repo, one external pin, members under candy/<name>/. A candy's identity IS
+#  its directory — ParseCandyManifest returns the FIRST candy node in a manifest and drops
+#  the rest — so members are never inlined into a single charly.yml.
+version: 2026.240.1943
+repo: github.com/opencharly/layer-omarchy-network
+discover:
+    - path: candy
+      recursive: true
