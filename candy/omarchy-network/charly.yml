@@ -1,6 +1,5 @@
 omarchy-network:
     candy:
-        version: 2026.242.0000
         description: |
             Omarchy's networking, bluetooth, printing and firewall stack — MACHINE-ONLY.
             omarchy-network installs the daemons that own a machine's network, bluetooth,
