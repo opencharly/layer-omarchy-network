@@ -1,6 +1,5 @@
 omarchy-network:
     candy:
-        version: 2026.242.0000
         description: |
             Omarchy's networking, bluetooth, printing and firewall stack — MACHINE-ONLY.
             omarchy-network installs the daemons that own a machine's network, bluetooth,
@@ -41,20 +40,18 @@ omarchy-network:
                 - build
               package:
                 package: networkmanager
-
             - check: the bluetooth stack is installed
               id: omarchy-network-bluez
               context:
                 - build
               package:
                 package: bluez
-
             - check: the print and firewall stacks are installed
               id: omarchy-network-cups-ufw
               context:
                 - build
               exit_status: 0
               command: |
-                  set -eu
-                    command -v cupsd >/dev/null || { echo "missing: cupsd" >&2; exit 1; }
-                    command -v ufw >/dev/null || { echo "missing: ufw" >&2; exit 1; }
+                set -eu
+                  command -v cupsd >/dev/null || { echo "missing: cupsd" >&2; exit 1; }
+                  command -v ufw >/dev/null || { echo "missing: ufw" >&2; exit 1; }
