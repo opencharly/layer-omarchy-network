@@ -47,5 +47,7 @@ my-omarchy-machine:
 
 ## Related
 
+- Closest family skill: `/charly-distros:omarchy-base` — the nearest owning procedure; this
+  repo carries no `skill:` entity of its own.
 - Foundation: `/charly-distros:omarchy-base`.
 - [`opencharly/opencharly`](https://github.com/opencharly/opencharly) — the umbrella.
