@@ -31,7 +31,6 @@ image's `candy:` list (not a pod):
 ```yaml
 my-omarchy-machine:
   candy:
-    # the named box's value is the box BODY; `base:` and the `candy:` list are its keys
     base: omarchy
     candy:
       - '@github.com/opencharly/layer-omarchy-base/candy/omarchy-base:v2026.242.0701'
