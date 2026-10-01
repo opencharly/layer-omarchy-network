@@ -9,7 +9,7 @@ omarchy-network:
             machine images only. Verifiable on the built image: the packages are present;
             no unit is enabled here, because enabling them is the machine image's job.
         require:
-            - '@github.com/opencharly/layer-omarchy-base/candy/omarchy-base:v2026.242.0701'
+            - '@github.com/opencharly/layer-omarchy-base/candy/omarchy-base:v2026.272.0437'
         distro:
             arch:
                 package:
